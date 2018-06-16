@@ -15,12 +15,14 @@ class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
-public:
+private:
 
 	virtual void BeginPlay() override;
-	ATank* GetContolledPawn();
-	
-private:
-	ATank * controlledTank = nullptr;
+	ATank* GetContolledTank();
+	ATank* GetPlayerTank();
+
+	ATank* controlledTank = nullptr;
+	ATank* playerTank = nullptr;
+
 	
 };
