@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankPlayerController.h"
+#include "Tank.h"
 
 ATank * ATankPlayerController::GetControlledTank()
 {
@@ -62,10 +63,10 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & OutHitLocation) con
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
 		//Line-trace along that LookDirection, and see what we hit(up to max range)
-		GetLookVectorHitLocation(LookDirection, OutHitLocation);
+		return GetLookVectorHitLocation(LookDirection, OutHitLocation);
 	}
 
-	return true;
+	return false;
 }
 
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const
@@ -86,7 +87,9 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 			ECC_Visibility)
 	   )
 	{
+
 		HitLocation = HitResult.Location;
+
 		return true;
 	}
 	HitLocation = FVector(0);

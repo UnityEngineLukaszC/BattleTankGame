@@ -8,7 +8,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankAimingComponent.generated.h"
 
-// forward reference
+//Forword declarations
 class UTankBarrel;
 
 // Holds barrel's reference and is responsible for aiming and moving barrel
