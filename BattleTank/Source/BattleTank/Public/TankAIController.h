@@ -22,11 +22,5 @@ private:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-	ATank* GetContolledTank();
-	ATank* GetPlayerTank();
-
-	ATank* controlledTank = nullptr;
-	ATank* playerTank = nullptr;
-
 	
 };
