@@ -22,5 +22,9 @@ private:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+public:
+	//This switch allows to turn off attacking the player for debuging purpose
+	bool AttackPlayerDebugSwitch = false;
 	
 };
