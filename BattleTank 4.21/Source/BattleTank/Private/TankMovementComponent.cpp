@@ -1,7 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Lukasz Cieplak
 
 #include "TankMovementComponent.h"
 #include "TankTrack.h"
+#include "DrawDebugHelpers.h"
 
 void UTankMovementComponent::InitialiseTankMovementComponent(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
 {
@@ -13,8 +14,28 @@ void UTankMovementComponent::InitialiseTankMovementComponent(UTankTrack* LeftTra
 void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
 {
 
-	auto ForwardMoveVector = GetOwner()->GetActorForwardVector().GetSafeNormal();
-	auto MoveVelocityString = MoveVelocity.GetSafeNormal();
+	auto ForwardVector = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AiMoveIntention = MoveVelocity.GetSafeNormal();
+
+
+	/*auto StartLocation = GetOwner()->GetActorLocation();
+	auto EndLocation = StartLocation + AiMoveIntention * 500;
+
+	DrawDebugLine(
+		GetWorld(),
+		StartLocation,
+		EndLocation,
+		FColor(0, 255, 0),
+		false, -1, 0,
+		12.333
+	);*/
+
+	auto MoveThrow = FVector::DotProduct(ForwardVector, AiMoveIntention);
+	IntendMoveForward(MoveThrow);
+
+	auto TurnThrow = FVector::CrossProduct(ForwardVector, AiMoveIntention).Z;
+	IntendTurnRight(TurnThrow);
+
 
 }
 
