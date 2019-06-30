@@ -34,7 +34,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void InitialiseTankAimingComponent(UTankBarrel * BarrelRef, UTankTurret * TurretRef);
 
-	void AimAt(FVector HitLocation, float LaunchSpeed);
+	void AimAt(FVector HitLocation);
 
 protected:
 	// Called when the game starts
@@ -42,6 +42,9 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "FiringState")
 	EFiringStatus FiringStatus = EFiringStatus::Reloading;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float LaunchSpeed = 5000; //Sensible launch speed
 
 private:
 	UTankBarrel* Barrel = nullptr;

@@ -9,7 +9,6 @@
 //Forword declarations
 class UTankBarrel;
 class UTankTurret;
-class UTankAimingComponent;
 class AProjectile;
 class UTankMovementComponent;
 
@@ -24,14 +23,8 @@ public:
 
 	void BeginPlay();
 
-	void AimAt(FVector HitLocation);
-
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void Fire();
-
-protected:
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent * TankAimingComponent = nullptr;
 
 
 private:	
