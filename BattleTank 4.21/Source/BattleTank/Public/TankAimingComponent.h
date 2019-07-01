@@ -44,6 +44,8 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "FiringState")
 	EFiringStatus FiringStatus = EFiringStatus::Reloading;
 
@@ -60,12 +62,14 @@ private:
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
 
-
+	FVector AimDirection = FVector(0);
 
 	double LastFireTime = 0;
 
 	void MoveBarrelTowards(FVector AimDirection);
 	void RotateTurret(FVector AimDirection);
+
+	bool IsBarrelMoving();
 
 
 
