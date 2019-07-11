@@ -122,7 +122,7 @@ void UTankAimingComponent::Fire()
 {
 	if (!ensure(Barrel && ProjectileBlueprint)) { return; }
 
-	UE_LOG(LogTemp, Warning, TEXT("Fire"));
+	UE_LOG(LogTemp, Warning, TEXT("FIRE"));
 
 	if (FiringStatus != EFiringStatus::Reloading)
 	{
