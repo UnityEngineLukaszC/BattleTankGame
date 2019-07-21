@@ -25,7 +25,7 @@ void ATankAIController::Tick(float DeltaTime)
 		//AIM towards the player
 		AiTankAimingComponent->AimAt(PlayerTank->GetActorLocation());
 
-		if (AiTankAimingComponent->GetFiringStatus() == EFiringStatus::Locked && !AttackPlayerDebugSwitch)
+		if (AiTankAimingComponent->GetFiringStatus() == EFiringStatus::Locked )
 		{
 			AiTankAimingComponent->Fire(); //DO NOT FIRE EVERY FRAME
 		}
