@@ -3,7 +3,17 @@
 #include "TankAIController.h"
 #include "Engine/World.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
 
+
+void ATankAIController::OnAITankDeath()
+{
+	if (!ensure(GetPawn())) { return; }
+
+	GetPawn()->DetachFromControllerPendingDestroy();
+	UE_LOG(LogTemp,Warning,TEXT("Enemy dead"))
+	//GetPawn()->Destroy();
+}
 
 void ATankAIController::BeginPlay()
 {
@@ -29,5 +39,19 @@ void ATankAIController::Tick(float DeltaTime)
 		{
 			AiTankAimingComponent->Fire(); //DO NOT FIRE EVERY FRAME
 		}
+	}
+}
+
+void ATankAIController::SetPawn(APawn * InPawn)
+{
+	Super::SetPawn(InPawn);
+	if (InPawn)
+	{
+		auto PossesedTank = Cast <ATank>(InPawn);
+		if (!ensure(PossesedTank)) { return; }
+
+		//Subscribe our local method to the tanks's death event
+		PossesedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnAITankDeath);
+
 	}
 }

@@ -23,10 +23,13 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
 	void FoundAimingComponent(UTankAimingComponent * AimCompRef);
 
+	UFUNCTION()
+	void OnPlayerTankDeath();
 
 private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	virtual void SetPawn(APawn* InPawn) override;
 
 	UPROPERTY(EditDefaultsOnly)
 	float CrossHairXLocation = 0.5f;
